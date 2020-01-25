@@ -1,0 +1,33 @@
+{
+  "name": "babel-plugin-styled-props-conditions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeDevice/babel-plugin-styled-props-conditions.git"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "styled",
+    "props"
+  ],
+  "author": "Mikhail Vyrodov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikeDevice/babel-plugin-styled-props-conditions/issues"
+  },
+  "homepage": "https://github.com/MikeDevice/babel-plugin-styled-props-conditions#readme",
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.2",
+    "nrun": "^1.0.0"
+  }
+}

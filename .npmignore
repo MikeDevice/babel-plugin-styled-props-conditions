@@ -1,0 +1,10 @@
+node_modules
+src
+test
+*.log
+.editorconfig
+.eslintrc
+.huskyrc
+.lintstagedrc
+.npmignore
+.travis.yml
