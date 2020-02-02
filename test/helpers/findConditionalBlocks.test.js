@@ -1,43 +1,36 @@
 import { findConditionalBlocks } from '../../src/helpers';
 
-const itHasNoBlocks = (message, chunks) => {
+const itToMatchSnapshot = (message, chunks) => {
   it(message, () => {
     const result = findConditionalBlocks(chunks);
-    expect(result).toEqual([]);
-  });
-};
-
-const itHasBlocks = (message, chunks, expectedResult) => {
-  it(message, () => {
-    const result = findConditionalBlocks(chunks);
-    expect(result).toEqual(expectedResult);
+    expect(result).toMatchSnapshot();
   });
 };
 
 describe('with no conditional blocks', () => {
   describe('no conditions', () => {
-    itHasNoBlocks('no chunks');
-    itHasNoBlocks('empty chunks', []);
-    itHasNoBlocks('single chunk', ['color: red']);
-    itHasNoBlocks('multiple chunks', ['a', '{ b }', '{ if a }']);
+    itToMatchSnapshot('no chunks');
+    itToMatchSnapshot('empty chunks', []);
+    itToMatchSnapshot('single chunk', ['color: red']);
+    itToMatchSnapshot('multiple chunks', ['a', '{ b }', '{ if a }']);
   });
   describe('incorrect conditions', () => {
     describe('single chunk', () => {
-      itHasNoBlocks('no condition body', ['@if']);
-      itHasNoBlocks('no brace', ['@if a']);
-      itHasNoBlocks('no matching brace', ['@if a {']);
-      itHasNoBlocks('incorrect keyword', ['@ifs a {}']);
-      itHasNoBlocks('without identifier', ['@if + {}']);
-      itHasNoBlocks('operator before identifier', ['@if + a {}']);
+      itToMatchSnapshot('no condition body', ['@if']);
+      itToMatchSnapshot('no brace', ['@if a']);
+      itToMatchSnapshot('no matching brace', ['@if a {']);
+      itToMatchSnapshot('incorrect keyword', ['@ifs a {}']);
+      itToMatchSnapshot('without identifier', ['@if + {}']);
+      itToMatchSnapshot('operator before identifier', ['@if + a {}']);
     });
     describe('multiple chunks', () => {
-      itHasNoBlocks('keyword in multiple chunks', ['@i', 'f']);
-      itHasNoBlocks('no brace', ['@if', 'a']);
-      itHasNoBlocks('no matching brace', ['@if', ' a ', '{']);
-      itHasNoBlocks('incorrect keyword', ['@ifs', ' a ', '{']);
-      itHasNoBlocks('without identifier', ['@if', ' + ', '{}']);
-      itHasNoBlocks('operator before identifier', ['@if', ' + a ', '{}']);
-      itHasNoBlocks('correct but in multiple chunks', ['@if ', ' a ', '{}']);
+      itToMatchSnapshot('keyword in multiple chunks', ['@i', 'f']);
+      itToMatchSnapshot('no brace', ['@if', 'a']);
+      itToMatchSnapshot('no matching brace', ['@if', ' a ', '{']);
+      itToMatchSnapshot('incorrect keyword', ['@ifs', ' a ', '{']);
+      itToMatchSnapshot('without identifier', ['@if', ' + ', '{}']);
+      itToMatchSnapshot('operator before identifier', ['@if', ' + a ', '{}']);
+      itToMatchSnapshot('correct but in multiple chunks', ['@if ', ' a ', '{}']);
     });
   });
 });
@@ -45,143 +38,79 @@ describe('with no conditional blocks', () => {
 describe('with conditional blocks', () => {
   describe('single chunk', () => {
     describe('without body', () => {
-      itHasBlocks('simple prop', ['@if a {}'], [
-        {
-          chunkStart: 0,
-          chunkEnd: 0,
-          blockStart: 0,
-          blockEnd: 7,
-          bodyStart: 6,
-          condition: { prop: 'a', rest: '' },
-        },
+      itToMatchSnapshot('simple prop', [
+        '@if a {}',
       ]);
-      itHasBlocks('prop with operations', ['@if a + 1 {}'], [
-        {
-          chunkStart: 0,
-          chunkEnd: 0,
-          blockStart: 0,
-          blockEnd: 11,
-          bodyStart: 10,
-          condition: { prop: 'a', rest: ' + 1' },
-        },
+      itToMatchSnapshot('prop with operations', [
+        '@if a + 1 {}',
       ]);
-      itHasBlocks('complex condition', ['@if b === [1, 2].join(" ") {}'], [
-        {
-          chunkStart: 0,
-          chunkEnd: 0,
-          blockStart: 0,
-          blockEnd: 28,
-          bodyStart: 27,
-          condition: { prop: 'b', rest: ' === [1, 2].join(" ")' },
-        },
+      itToMatchSnapshot('complex condition', [
+        '@if b === [1, 2].join(" ") {}',
       ]);
-      itHasBlocks(
-        'multiple blocks',
-        [
-          `
-            @if a {}
-            @if a === b {}
-          `,
-        ],
-        [
-          {
-            chunkStart: 0,
-            chunkEnd: 0,
-            blockStart: 13,
-            blockEnd: 20,
-            bodyStart: 19,
-            condition: { prop: 'a', rest: '' },
-          },
-          {
-            chunkStart: 0,
-            chunkEnd: 0,
-            blockStart: 34,
-            blockEnd: 47,
-            bodyStart: 46,
-            condition: { prop: 'a', rest: ' === b' },
-          },
-        ],
-      );
+      itToMatchSnapshot('multiple blocks', [`
+        @if a {}
+        @if a === b {}
+      `]);
     });
     describe('with body', () => {
-      itHasBlocks(
-        'simple prop',
-        [
-          '@if a { color: red; }',
-        ],
-        [
-          {
-            chunkStart: 0,
-            chunkEnd: 0,
-            blockStart: 0,
-            blockEnd: 20,
-            bodyStart: 6,
-            condition: { prop: 'a', rest: '' },
-          },
-        ],
-      );
-      itHasBlocks(
-        'prop with operations',
-        [
-          '@if variable !== a + b * 2  { background: white; }',
-        ],
-        [
-          {
-            chunkStart: 0,
-            chunkEnd: 0,
-            blockStart: 0,
-            blockEnd: 49,
-            bodyStart: 28,
-            condition: { prop: 'variable', rest: ' !== a + b * 2' },
-          },
-        ],
-      );
-      itHasBlocks(
-        'complex condition',
-        [
-          '@if b == func("ab") + func(["a", "b"].join("")) { color: white; }',
-        ],
-        [
-          {
-            chunkStart: 0,
-            chunkEnd: 0,
-            blockStart: 0,
-            blockEnd: 64,
-            bodyStart: 48,
-            condition: { prop: 'b', rest: ' == func("ab") + func(["a", "b"].join(""))' },
-          },
-        ],
-      );
-      itHasBlocks(
-        'nested blocks',
-        [
-          `@if a {
-            color: red;
+      itToMatchSnapshot('simple prop', [
+        '@if a { color: red; }',
+      ]);
+      itToMatchSnapshot('prop with operations', [`
+        @if variable !== a + b * 2  {
+          background: white;
+        }
+      `]);
+      itToMatchSnapshot('complex condition', [`
+        @if b == func("ab") + func(["a", "b"].join("")) {
+          color: white;
+        }
+      `]);
+      itToMatchSnapshot('nested blocks', [`
+        @if a {
+          color: red;
 
-            @if b === "text" {
-              color: green;
-            }
-          }`,
-        ],
-        [
-          {
-            chunkStart: 0,
-            chunkEnd: 0,
-            blockStart: 0,
-            blockEnd: 116,
-            bodyStart: 6,
-            condition: { prop: 'a', rest: '' },
-          },
-          {
-            chunkStart: 0,
-            chunkEnd: 0,
-            blockStart: 45,
-            blockEnd: 104,
-            bodyStart: 62,
-            condition: { prop: 'b', rest: ' === "text"' },
-          },
-        ],
-      );
+          @if b === "text" {
+            color: green;
+          }
+        }
+      `]);
     });
+  });
+  describe('multiple chunks', () => {
+    itToMatchSnapshot('simple prop', [
+      '@if a {',
+      '  color: red',
+      '}',
+    ]);
+    itToMatchSnapshot('complex condition', [
+      '@if variable === "text" {',
+      '  color: red',
+      '  background: white',
+      '}',
+    ]);
+    itToMatchSnapshot('multiple blocks', [
+      '@if b {',
+      '  color: red',
+      '}',
+      '',
+      'display: block;',
+      '',
+      '@if type === "default" {',
+      '  color: red',
+      '  display: inline-block',
+      '}',
+    ]);
+    itToMatchSnapshot('nested blocks', [
+      '@if b {',
+      '  color: red',
+      '  @if a === b {',
+      '    @if c { color: red; }',
+      `    color: green;
+         }
+      `,
+      '',
+      '}',
+    ]);
   });
 });

@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with conditional blocks multiple chunks complex condition 1`] = `
+Array [
+  Object {
+    "blockEnd": 0,
+    "blockStart": 0,
+    "bodyStart": 24,
+    "chunkEnd": 3,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "variable",
+      "rest": " === \\"text\\"",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks multiple chunks multiple blocks 1`] = `
+Array [
+  Object {
+    "blockEnd": 0,
+    "blockStart": 0,
+    "bodyStart": 6,
+    "chunkEnd": 2,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "b",
+      "rest": "",
+    },
+  },
+  Object {
+    "blockEnd": 0,
+    "blockStart": 0,
+    "bodyStart": 23,
+    "chunkEnd": 9,
+    "chunkStart": 6,
+    "condition": Object {
+      "prop": "type",
+      "rest": " === \\"default\\"",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks multiple chunks nested blocks 1`] = `
+Array [
+  Object {
+    "blockEnd": 0,
+    "blockStart": 0,
+    "bodyStart": 6,
+    "chunkEnd": 6,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "b",
+      "rest": "",
+    },
+  },
+  Object {
+    "blockEnd": 27,
+    "blockStart": 2,
+    "bodyStart": 14,
+    "chunkEnd": 4,
+    "chunkStart": 2,
+    "condition": Object {
+      "prop": "a",
+      "rest": " === b",
+    },
+  },
+  Object {
+    "blockEnd": 24,
+    "blockStart": 4,
+    "bodyStart": 10,
+    "chunkEnd": 3,
+    "chunkStart": 3,
+    "condition": Object {
+      "prop": "c",
+      "rest": "",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks multiple chunks simple prop 1`] = `
+Array [
+  Object {
+    "blockEnd": 0,
+    "blockStart": 0,
+    "bodyStart": 6,
+    "chunkEnd": 2,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "a",
+      "rest": "",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks single chunk with body complex condition 1`] = `
+Array [
+  Object {
+    "blockEnd": 91,
+    "blockStart": 9,
+    "bodyStart": 57,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "b",
+      "rest": " == func(\\"ab\\") + func([\\"a\\", \\"b\\"].join(\\"\\"))",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks single chunk with body nested blocks 1`] = `
+Array [
+  Object {
+    "blockEnd": 115,
+    "blockStart": 9,
+    "bodyStart": 15,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "a",
+      "rest": "",
+    },
+  },
+  Object {
+    "blockEnd": 105,
+    "blockStart": 50,
+    "bodyStart": 67,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "b",
+      "rest": " === \\"text\\"",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks single chunk with body prop with operations 1`] = `
+Array [
+  Object {
+    "blockEnd": 76,
+    "blockStart": 9,
+    "bodyStart": 37,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "variable",
+      "rest": " !== a + b * 2",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks single chunk with body simple prop 1`] = `
+Array [
+  Object {
+    "blockEnd": 20,
+    "blockStart": 0,
+    "bodyStart": 6,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "a",
+      "rest": "",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks single chunk without body complex condition 1`] = `
+Array [
+  Object {
+    "blockEnd": 28,
+    "blockStart": 0,
+    "bodyStart": 27,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "b",
+      "rest": " === [1, 2].join(\\" \\")",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks single chunk without body multiple blocks 1`] = `
+Array [
+  Object {
+    "blockEnd": 16,
+    "blockStart": 9,
+    "bodyStart": 15,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "a",
+      "rest": "",
+    },
+  },
+  Object {
+    "blockEnd": 39,
+    "blockStart": 26,
+    "bodyStart": 38,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "a",
+      "rest": " === b",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks single chunk without body prop with operations 1`] = `
+Array [
+  Object {
+    "blockEnd": 11,
+    "blockStart": 0,
+    "bodyStart": 10,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "a",
+      "rest": " + 1",
+    },
+  },
+]
+`;
+
+exports[`with conditional blocks single chunk without body simple prop 1`] = `
+Array [
+  Object {
+    "blockEnd": 7,
+    "blockStart": 0,
+    "bodyStart": 6,
+    "chunkEnd": 0,
+    "chunkStart": 0,
+    "condition": Object {
+      "prop": "a",
+      "rest": "",
+    },
+  },
+]
+`;
+
+exports[`with no conditional blocks incorrect conditions multiple chunks correct but in multiple chunks 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions multiple chunks incorrect keyword 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions multiple chunks keyword in multiple chunks 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions multiple chunks no brace 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions multiple chunks no matching brace 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions multiple chunks operator before identifier 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions multiple chunks without identifier 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions single chunk incorrect keyword 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions single chunk no brace 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions single chunk no condition body 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions single chunk no matching brace 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions single chunk operator before identifier 1`] = `Array []`;
+
+exports[`with no conditional blocks incorrect conditions single chunk without identifier 1`] = `Array []`;
+
+exports[`with no conditional blocks no conditions empty chunks 1`] = `Array []`;
+
+exports[`with no conditional blocks no conditions multiple chunks 1`] = `Array []`;
+
+exports[`with no conditional blocks no conditions no chunks 1`] = `Array []`;
+
+exports[`with no conditional blocks no conditions single chunk 1`] = `Array []`;
