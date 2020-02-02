@@ -1,5 +1,3 @@
-export const a = 1;
-
 export const findMatchingBrace = (chunks = []) => {
   if (!chunks.length || !chunks[0] || chunks[0][0] !== '{') return;
 
@@ -35,4 +33,55 @@ export const findMatchingBrace = (chunks = []) => {
   if (bracesCounter === 0) {
     return { chunkIndex, charIndex };
   }
+};
+
+const parseCondition = (str) => {
+  const matchResult = str.match(/^[_a-z]\w*/i);
+
+  if (matchResult) {
+    const [prop] = matchResult;
+    const { input } = matchResult;
+
+    return {
+      prop,
+      rest: input.slice(prop.length),
+    };
+  }
+};
+
+export const findConditionalBlocks = (chunks = []) => {
+  const conditionalBlocks = [];
+
+  chunks.forEach((chunk, chunkIndex) => {
+    const matchResults = Array.from(chunk.matchAll(/@if(\s+[_a-z]+[^{]*){/g));
+
+    matchResults.forEach((result) => {
+      const [match, condition] = result;
+      const { index, input } = result;
+      const bodyStartIndex = index + match.length - 1;
+
+      const subChunks = chunks.slice(chunkIndex);
+      subChunks[0] = input.slice(bodyStartIndex);
+
+      const matchingBrace = findMatchingBrace(subChunks);
+      const parsedCondition = parseCondition(condition.trim());
+
+      if (matchingBrace && parsedCondition) {
+        conditionalBlocks.push({
+          chunkStart: chunkIndex,
+          chunkEnd: chunkIndex + matchingBrace.chunkIndex,
+
+          blockStart: index,
+          blockEnd: matchingBrace.chunkIndex === 0
+            ? matchingBrace.charIndex + bodyStartIndex
+            : matchingBrace.charIndex,
+
+          condition: parsedCondition,
+          bodyStart: bodyStartIndex,
+        });
+      }
+    });
+  });
+
+  return conditionalBlocks;
 };
