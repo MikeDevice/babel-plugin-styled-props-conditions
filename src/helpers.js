@@ -85,3 +85,6 @@ export const findConditionalBlocks = (chunks = []) => {
 
   return conditionalBlocks;
 };
+
+export const createExpression = ({ prop, rest }, hint) =>
+  `\${({${prop}}) => ${prop}${rest} && ${hint}\``;
