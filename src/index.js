@@ -50,7 +50,7 @@ export default function ({ types: t }) {
         });
 
         quasisRaws.forEach((raw, index) => {
-          path.node.quasi.quasis[index] = t.templateElement({ raw, cooked: raw });
+          path.node.quasi.quasis[index] = t.templateElement({ raw });
         });
       },
     },
