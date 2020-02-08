@@ -38,22 +38,25 @@ export const findMatchingBrace = (chunks = []) => {
 const parseCondition = (str) => {
   const matchResult = str.match(/^[_a-z]\w*/i);
 
-  if (matchResult) {
-    const [prop] = matchResult;
-    const { input } = matchResult;
+  // There is no need to check variable 'matchResult' to being truthy
+  // because this function is a helper function that is called only from
+  // 'findConditionalBlocks' helper function and that function guarantees
+  // to pass here the correct 'str' paramether
 
-    return {
-      prop,
-      rest: input.slice(prop.length),
-    };
-  }
+  const [prop] = matchResult;
+  const { input } = matchResult;
+
+  return {
+    prop,
+    rest: input.slice(prop.length),
+  };
 };
 
 export const findConditionalBlocks = (chunks = []) => {
   const conditionalBlocks = [];
 
   chunks.forEach((chunk, chunkIndex) => {
-    const matchResults = Array.from(chunk.matchAll(/@if(\s+[_a-z]+[^{]*){/g));
+    const matchResults = Array.from(chunk.matchAll(/@if(\s+[_a-z][^{]*){/gi));
 
     matchResults.forEach((result) => {
       const [match, condition] = result;
