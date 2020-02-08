@@ -4,8 +4,15 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "test": "jest",
+    "clean-test-output": "rm -f test/plugin/fixtures/*/output.js",
+    "update-test-output": "nrun clean-test-output && nrun test",
+    "build": "babel src --out-dir lib"
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MikeDevice/babel-plugin-styled-props-conditions.git"
@@ -22,11 +29,19 @@
     "url": "https://github.com/MikeDevice/babel-plugin-styled-props-conditions/issues"
   },
   "homepage": "https://github.com/MikeDevice/babel-plugin-styled-props-conditions#readme",
+  "dependencies": {
+    "@babel/helper-module-imports": "^7.8.3"
+  },
   "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-plugin-tester": "^8.0.1",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.0",
     "husky": "^4.2.1",
+    "jest": "^25.1.0",
     "lint-staged": "^10.0.2",
     "nrun": "^1.0.0"
   }
