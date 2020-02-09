@@ -43,19 +43,19 @@ Instead of
 styled.button`
   display: block;
 
-  ${(props) => props.primary && css`
+  ${({primary}) => primary && css`
     padding: 0 10px;
 
     color: white;
     background-color: grey;
   `}
 
-  ${(props) => props.theme === 'light' && css`
+  ${({theme}) => theme === 'light' && css`
     color: black;
     background-color: white;
   `}
 
-  ${(props) => props.theme === 'dark' && css`
+  ${({theme}) => theme === 'dark' && css`
     color: white;
     background-color: black;
   `}
