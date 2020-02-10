@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-styled-props-conditions",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Provides another syntax for getting access to styled-components props",
   "main": "lib/index.js",
   "scripts": {
