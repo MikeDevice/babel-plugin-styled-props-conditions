@@ -1,3 +1,5 @@
+import generate from '@babel/generator';
+import { parse } from '@babel/parser';
 import { addNamed } from '@babel/helper-module-imports';
 import { findConditionalBlocks, createExpression } from './helpers';
 
@@ -52,6 +54,11 @@ export default function ({ types: t }) {
         quasisRaws.forEach((raw, index) => {
           path.node.quasi.quasis[index] = t.templateElement({ raw });
         });
+
+        const { code } = generate(path.node);
+        const { expression } = parse(code).program.body[0];
+
+        path.replaceWith(expression);
       },
     },
   };
