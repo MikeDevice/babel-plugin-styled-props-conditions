@@ -6,9 +6,10 @@
   "scripts": {
     "lint": "eslint ./",
     "test": "jest",
+    "test:clean": "rm -f test/plugin/fixtures/*/output.js",
+    "test:update": "nrun test:clean && nrun test -u",
     "spellcheck": "yaspeller-ci *.md",
-    "clean-test-output": "rm -f test/plugin/fixtures/*/output.js",
-    "update-test-output": "nrun clean-test-output && nrun test",
+    "dev": "nrun build --watch --verbose",
     "build": "babel src --out-dir lib"
   },
   "files": [
