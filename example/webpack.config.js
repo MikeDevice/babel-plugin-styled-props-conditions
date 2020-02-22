@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   devtool: 'cheap-eval-source-map',
-  entry: ['./src/index.jsx'],
+  entry: './src/index.jsx',
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
