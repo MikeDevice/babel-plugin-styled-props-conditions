@@ -13,7 +13,8 @@
     "spellcheck": "yaspeller-ci *.md",
     "dev": "nrun build --watch --verbose",
     "clean": "rimraf lib coverage",
-    "build": "nrun clean && babel src --out-dir lib"
+    "build": "nrun clean && babel src --out-dir lib",
+    "postinstall": "cd example && npm install"
   },
   "files": [
     "lib"
