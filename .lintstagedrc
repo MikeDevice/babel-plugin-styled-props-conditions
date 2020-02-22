@@ -1,4 +1,4 @@
 {
-  "!(example/*).js": "eslint --cache --fix",
+  "!(example/*).js": "eslint",
   "*.md": "yaspeller-ci"
 }

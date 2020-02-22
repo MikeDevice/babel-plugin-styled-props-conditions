@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "run-p -c -s lint:*",
-    "lint:plugin": "eslint --cache --fix ./",
+    "lint:plugin": "eslint ./",
     "lint:example": "cd example && nrun lint",
     "lint:spellcheck": "yaspeller-ci *.md",
     "test": "jest",
