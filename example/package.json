@@ -1,0 +1,25 @@
+{
+  "name": "babel-plugin-styled-props-conditions-example",
+  "version": "1.0.0",
+  "description": "An example for babel-plugin-styled-props-conditions",
+  "scripts": {
+    "dev": "webpack-dev-server --hot"
+  },
+  "author": "Mikhail Vyrodov",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@hot-loader/react-dom": "^16.11.0",
+    "babel-loader": "^8.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "nrun": "^1.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-hot-loader": "^4.12.19",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
