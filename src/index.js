@@ -3,11 +3,16 @@ import { parse } from '@babel/parser';
 import { addNamed } from '@babel/helper-module-imports';
 import { findConditionalBlocks, createExpression } from './helpers';
 
+let cssHint;
+
 export default function ({ types: t }) {
   return {
     name: 'styled-props-conditions',
 
     visitor: {
+      Program() {
+        cssHint = null;
+      },
       TaggedTemplateExpression(path) {
         const { quasis } = path.node.quasi;
         const quasisRaws = quasis.map(({ value }) => value.raw);
@@ -16,7 +21,9 @@ export default function ({ types: t }) {
 
         if (!conditionalBlocks.length) return;
 
-        const cssHint = addNamed(path, 'css', 'styled-components');
+        if (!cssHint) {
+          cssHint = addNamed(path, 'css', 'styled-components');
+        }
 
         conditionalBlocks.forEach((conditionalBlock) => {
           const {

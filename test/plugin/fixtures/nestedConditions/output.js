@@ -1,4 +1,3 @@
-import { css as _css2 } from "styled-components";
 import { css as _css } from "styled-components";
 styled.div`
   color: green;
@@ -27,21 +26,21 @@ styled.div`
 
   ${({ a }) =>
     a &&
-    _css2`
+    _css`
     ${a}
     color: grey;
     ${a}
 
     ${({ b }) =>
       b &&
-      _css2`
+      _css`
       ${a}
       color: red;
       ${a}
 
       ${({ c }) =>
         c === func(c) + "something" &&
-        _css2`
+        _css`
         ${a}
         display: block;
         ${a}

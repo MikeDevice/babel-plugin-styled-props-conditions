@@ -6,10 +6,12 @@
   "scripts": {
     "lint": "eslint ./",
     "test": "jest",
+    "test:clean": "rimraf test/plugin/fixtures/*/output.js",
+    "test:update": "nrun test:clean && nrun test -u",
     "spellcheck": "yaspeller-ci *.md",
-    "clean-test-output": "rm -f test/plugin/fixtures/*/output.js",
-    "update-test-output": "nrun clean-test-output && nrun test",
-    "build": "babel src --out-dir lib"
+    "dev": "nrun build --watch --verbose",
+    "clean": "rimraf lib coverage",
+    "build": "nrun clean && babel src --out-dir lib"
   },
   "files": [
     "lib"
@@ -48,6 +50,7 @@
     "jest": "^25.1.0",
     "lint-staged": "^10.0.7",
     "nrun": "^1.0.0",
+    "rimraf": "^3.0.2",
     "yaspeller-ci": "^1.0.2"
   }
 }

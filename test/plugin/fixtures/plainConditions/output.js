@@ -1,4 +1,3 @@
-import { css as _css2 } from "styled-components";
 import { css as _css } from "styled-components";
 styled.div`
   ${({ a }) =>
@@ -24,7 +23,7 @@ styled.button`
 
   ${({ a }) =>
     a &&
-    _css2`
+    _css`
     ${a + b}
 
     color: green;
