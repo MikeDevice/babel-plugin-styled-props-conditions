@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An example for babel-plugin-styled-props-conditions",
   "scripts": {
-    "lint": "eslint --ext '.js,jsx' ./",
+    "lint": "eslint --ext '.js,jsx' --cache --fix ./",
     "dev": "webpack-dev-server --hot"
   },
   "author": "Mikhail Vyrodov",

@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "run-p -c -s lint:*",
-    "lint:plugin": "eslint ./",
+    "lint:plugin": "eslint --cache --fix ./",
     "lint:example": "cd example && nrun lint",
     "test": "jest",
     "test:clean": "rimraf test/plugin/fixtures/*/output.js",
