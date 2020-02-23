@@ -8,5 +8,7 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
+
+    line-height: 1.5;
   }
 `;
