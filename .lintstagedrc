@@ -1,4 +1,4 @@
 {
-  "*.js": "eslint",
+  "!(example/*).js": "eslint",
   "*.md": "yaspeller-ci"
 }
