@@ -14,7 +14,7 @@ A plugin for Babel that provides another syntax for getting access to [styled-co
 ```
 
 ## How it works
-This plugin is looking for `TaggedTemplateExpression` in source code containing conditional blocks written with syntax described above. When blocks are found the plugin replaces it with `${expression}` blocks.
+This plugin is looking for `TaggedTemplateExpression` in source code containing conditional blocks written with syntax described above. When blocks are found the plugin replaces them with `${expression}` blocks.
 
 ### Input
 
