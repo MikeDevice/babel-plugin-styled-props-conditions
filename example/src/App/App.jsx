@@ -1,8 +1,13 @@
 import React from 'react';
+import GlobalStyles from './GlobalStyles';
+import Page from './components/Page';
 
 function App() {
   return (
-    <div>123</div>
+    <>
+      <GlobalStyles />
+      <Page />
+    </>
   );
 }
 
