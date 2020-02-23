@@ -21,7 +21,6 @@
     "@hot-loader/react-dom": "^16.11.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.7",
-    "babel-plugin-styled-props-conditions": "file:..",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.20.1",

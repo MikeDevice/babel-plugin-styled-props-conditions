@@ -14,7 +14,7 @@
     "dev": "nrun build --watch --verbose",
     "clean": "rimraf lib coverage",
     "build": "nrun clean && babel src --out-dir lib",
-    "postinstall": "cd example && npm install"
+    "postinstall": "nrun build && cd example && npm install"
   },
   "files": [
     "lib"

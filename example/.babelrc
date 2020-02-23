@@ -1,7 +1,7 @@
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
-    "babel-plugin-styled-props-conditions",
+    "../",
     "babel-plugin-styled-components",
     "react-hot-loader/babel"
   ]
