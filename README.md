@@ -51,7 +51,7 @@ ${({ <prop_name> }) => <prop_name> [<javascript code>] && css`
 * [Boolean conditions](#boolean-conditions).
 * [Conditions with expressions](#conditions-with-expressions).
 * [Nested conditions](#nested-conditions).
-* [Example in real project](#example-in-real-project).
+* [Real project example](#real-project-example).
 
 ### <a id="boolean-conditions"></a> Example #1: Boolean conditions
 
@@ -162,7 +162,7 @@ styled.button`
 `
 ```
 
-### <a id="example-in-real-project"></a> Example in real project
+### <a id="real-project-example"></a> Real project example
 
 Check the [example](example) folder to see how this plugin works in the real project.
 
