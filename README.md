@@ -97,7 +97,7 @@ styled.button`
     background-color: black;
   }
 
-  @if theme == getCurrectTheme() {
+  @if theme == getTheme() {
     color: ${getColor()};
   }
 `
@@ -119,7 +119,7 @@ styled.button`
     background-color: black;
   `}
 
-  ${({ theme }) => theme == getCurrectTheme() && css`
+  ${({ theme }) => theme == getTheme() && css`
     color: ${getColor()};
   `}
 `
