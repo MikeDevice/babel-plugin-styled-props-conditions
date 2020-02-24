@@ -6,6 +6,9 @@
 
 ```sh
 $ npm install
+$ nrun build
+
 $ cd example
+$ npm install
 $ nrun dev
 ```
