@@ -5,34 +5,64 @@
 
 A plugin for Babel that provides another syntax for getting access to [styled-components](https://styled-components.com) props.
 
+## Installation
+
+```sh
+$ npm install --save-dev babel-plugin-styled-props-conditions
+```
+
+## Usage
+Add `babel-plugin-styled-props-conditions` to plugins list in your `.babelrc`:
+
+```json
+{
+  "plugins": ["babel-plugin-styled-props-conditions"]
+}
+```
+
 ## Syntax
+
 ```
 @if <prop_name> [<javascript code>] {
   <styles>
 }
 ```
 
-## Example
+## How it works
+This plugin search for Tagged Templates Literals containing conditional blocks written with syntax described above. When blocks are found the plugin replaces them with `${expression}` blocks.
+
+### Input
+
+```
+@if <prop_name> [<javascript code>] {
+  <styles>
+}
+```
+
+### Output
+
+```
+${({ <prop_name> }) => <prop_name> [<javascript code>] && css`
+  <styles>
+`}
+```
+
+## Examples
+* [Boolean conditions](#boolean-conditions).
+* [Conditions with expressions](#conditions-with-expressions).
+* [Nested conditions](#nested-conditions).
+* [Real project example](#real-project-example).
+
+### <a id="boolean-conditions"></a> Example #1: Boolean conditions
 
 ```js
 styled.button`
-  display: block;
-
   @if primary {
-    padding: 0 10px;
-
-    color: white;
-    background-color: grey;
+    color: green;
   }
 
-  @if theme === 'light' {
-    color: black;
-    background-color: white;
-  }
-
-  @if theme === 'dark' {
-    color: white;
-    background-color: black;
+  @if secondary {
+    color: grey;
   }
 `
 ```
@@ -40,24 +70,117 @@ styled.button`
 Instead of
 
 ```js
+import { css } from 'styled-components';
+
 styled.button`
-  display: block;
-
-  ${({primary}) => primary && css`
-    padding: 0 10px;
-
-    color: white;
-    background-color: grey;
+  ${({ primary }) => primary && css`
+    color: green;
   `}
 
-  ${({theme}) => theme === 'light' && css`
+  ${({ secondary }) => secondary && css`
+    color: grey;
+  `}
+`
+```
+
+### <a id="conditions-with-expressions"></a> Example #2: Conditions with expressions
+
+```js
+styled.button`
+  @if theme == 'light' {
+    color: black;
+    background-color: white;
+  }
+
+  @if theme == 'dark' {
+    color: white;
+    background-color: black;
+  }
+
+  @if theme == getTheme() {
+    color: ${getColor()};
+  }
+`
+```
+
+Instead of
+
+```js
+import { css } from 'styled-components';
+
+styled.button`
+  ${({ theme }) => theme == 'light' && css`
     color: black;
     background-color: white;
   `}
 
-  ${({theme}) => theme === 'dark' && css`
+  ${({ theme }) => theme == 'dark' && css`
     color: white;
     background-color: black;
   `}
+
+  ${({ theme }) => theme == getTheme() && css`
+    color: ${getColor()};
+  `}
 `
+```
+
+### <a id="nested-conditions"></a> Example #3: Nested conditions
+
+```js
+styled.button`
+  @if primary {
+    @if theme == 'light' {
+      color: black;
+      background-color: white;
+    }
+
+    @if theme == 'dark' {
+      color: white;
+      background-color: black;
+    }
+  }
+`
+```
+
+Instead of
+```js
+import { css } from 'styled-components';
+
+styled.button`
+  ${({ primary }) => primary && css`
+    ${({ theme }) => theme == 'light' && css`
+      color: black;
+      background-color: white;
+    `}
+
+    ${({ theme }) => theme == 'dark' && css`
+      color: white;
+      background-color: black;
+    `}
+  `}
+`
+```
+
+### <a id="real-project-example"></a> Real project example
+
+Check the [example](example) folder to see how this plugin works in the real project.
+
+## Linting styles
+To make `@if` keyword as known to stylelint, add
+
+```json
+"ignoreAtRules": ["/^if$/"]
+```
+
+option to `at-rule-no-unknown` rule in `.stylelintrc`, like so:
+
+```json
+{
+  "rules": {
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": ["/^if$/"]
+    }]
+  }
+}
 ```
