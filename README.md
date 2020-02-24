@@ -5,6 +5,21 @@
 
 A plugin for Babel that provides another syntax for getting access to [styled-components](https://styled-components.com) props.
 
+## Installation
+
+```sh
+$ npm install --save-dev babel-plugin-styled-props-conditions
+```
+
+## Usage
+Add `babel-plugin-styled-props-conditions` to plugins list in your `.babelrc`:
+
+```json
+{
+  "plugins": ["babel-plugin-styled-props-conditions"]
+}
+```
+
 ## Syntax
 
 ```
@@ -14,7 +29,7 @@ A plugin for Babel that provides another syntax for getting access to [styled-co
 ```
 
 ## How it works
-This plugin is looking for `TaggedTemplateExpression` in source code containing conditional blocks written with syntax described above. When blocks are found the plugin replaces them with `${expression}` blocks.
+This plugin search for Tagged Templates Literals containing conditional blocks written with syntax described above. When blocks are found the plugin replaces them with `${expression}` blocks.
 
 ### Input
 
@@ -149,7 +164,7 @@ styled.button`
 
 ### <a id="example-in-real-project"></a> Example in real project
 
-Check the [example](example) folder to see how this plugin works in real project.
+Check the [example](example) folder to see how this plugin works in the real project.
 
 ## Linting styles
 To make `@if` keyword as known to stylelint, add
