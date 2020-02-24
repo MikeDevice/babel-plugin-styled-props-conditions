@@ -4,6 +4,10 @@ node_js:
   - 'node'
   - 12
 
+install:
+  - npm ci
+  - cd example && npm ci
+
 script:
   - npm run lint
   - npm run test && cat coverage/lcov.info | coveralls

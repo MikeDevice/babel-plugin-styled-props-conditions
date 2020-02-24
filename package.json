@@ -13,8 +13,7 @@
     "test:update": "nrun test:clean && nrun test -u",
     "dev": "nrun build --watch --verbose",
     "clean": "rimraf lib coverage",
-    "build": "nrun clean && babel src --out-dir lib",
-    "postinstall": "nrun build && cd example && npm install"
+    "build": "nrun clean && babel src --out-dir lib"
   },
   "files": [
     "lib"
