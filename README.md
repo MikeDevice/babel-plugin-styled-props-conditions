@@ -30,7 +30,7 @@ Add `babel-plugin-styled-props-conditions` to plugins list in your `.babelrc`:
 ```
 
 ## How it works
-This plugin search for Tagged Templates Literals containing conditional blocks written with syntax described above. When blocks are found the plugin replaces them with `${expression}` blocks.
+This plugin searches for Tagged Templates Literals containing conditional blocks written with syntax described above. When blocks are found the plugin replaces them with `${expression}` blocks.
 
 ### Input
 
