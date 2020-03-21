@@ -9,5 +9,5 @@ install:
   - cd example && npm ci  && cd ..
 
 script:
-  - npm run lint
-  - npm run test && cat coverage/lcov.info | coveralls
+  - nrun lint
+  - nrun test && cat coverage/lcov.info | coveralls
