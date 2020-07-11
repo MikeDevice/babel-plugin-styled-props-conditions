@@ -1,5 +1,6 @@
 {
   "extends": "airbnb",
+  "root": true,
   "globals": {
     "document": true
   }
